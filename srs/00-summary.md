@@ -1,16 +1,6 @@
 # System Requirements Specifications #
-
-<Project>
-
-Version <version> approved
-
-Prepared by <author>
-
-<organization>
-
-<date created>
-
 Revision History
+
 <table>
 <tr>
 <th>Name</th>
@@ -34,6 +24,7 @@ Revision History
 
 # 1 Introduction #
 ## 1.1 Purpose ##
+
 ## 1.2 Document Conventions ##
 ## 1.3 Glossary
 ## 1.4 Intended Audience and Reading Suggestions ##
