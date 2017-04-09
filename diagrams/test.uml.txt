@@ -1,0 +1,20 @@
+@startuml
+
+title Database
+
+class User {
+  +str email
+  +str password
+}
+
+class Accommodation {
+  +str name
+  +int price
+  +enum type ['truc', 'lol']
+  +point coordinates
+
+}
+
+User <|-down- Accommodation
+
+@enduml

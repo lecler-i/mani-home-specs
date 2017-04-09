@@ -1,0 +1,17 @@
+@startuml
+
+rectangle Features {
+  (Accommodation Listing) as AL
+  (Create / Delete ad) as CDA
+}
+
+
+Employee -up-|> User
+Client -up-|> User
+Supervisor -up-|> User
+Employee --> (Login)
+Supervisor --> (Login)
+User ..> AL : NO!!!!
+Owner --> CDA
+
+@enduml
