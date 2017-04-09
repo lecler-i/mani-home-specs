@@ -15,6 +15,7 @@ package "Mobile app" {
 
 database "Database" {
   [Accommodations]
+  [Users]
 }
 
 GUI -down-> Internet
@@ -24,6 +25,7 @@ Internet -down-( API
 DA -- IAccommodations
 [Business Logic] --( IAccommodations
 DA .. [Accommodations]
+DA .. [Users]
 
 User --> GUI
 
