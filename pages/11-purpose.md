@@ -1,0 +1,3 @@
+## Purpose
+
+the purpose of this document is to present a detailed description of Mani-Home project, an Android mobile application, a server-side database and their communication API. It will explain the purpose and features of the mobile application, what this app will do, describe the communication between the database and the app, justify our design and implementation choice. This document intended for the MIT teacher but also for us in order to stay clear on our goal. 
