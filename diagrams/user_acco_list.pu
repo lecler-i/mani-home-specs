@@ -1,0 +1,5 @@
+Actor user as u
+
+(accomodation list)  as al
+u -> al
+al ..> u
