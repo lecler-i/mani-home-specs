@@ -1,0 +1,21 @@
+@startuml
+
+rectangle Authentification {
+    (Facebook account) as fb
+    (Google account) as ga
+    (Login) as lg
+}
+
+rectangle Account {
+}
+
+User --> fb
+User --> ga
+
+fb --> lg
+ga --> lg
+
+Authentification -down-|> Account
+User --> Account : Manage
+
+@enduml
