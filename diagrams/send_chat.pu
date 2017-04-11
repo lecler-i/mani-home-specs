@@ -1,0 +1,10 @@
+Actor user as u
+
+
+(chat) as temp
+
+
+u .right.> temp : send message
+
+
+
