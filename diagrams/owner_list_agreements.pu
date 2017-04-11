@@ -1,0 +1,5 @@
+Actor Owner
+
+(Agreements list) as list_agreement
+
+Owner -> list_agreement

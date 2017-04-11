@@ -1,0 +1,5 @@
+Actor Owner
+
+(View agreement) as view_agreement
+
+Owner -> view_agreement
