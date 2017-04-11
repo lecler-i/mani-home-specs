@@ -1,4 +1,0 @@
-Actor user as u
-
-(filtred accomodation list)  as al
-u -right-> al : filter
