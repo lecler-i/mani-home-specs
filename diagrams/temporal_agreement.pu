@@ -1,0 +1,11 @@
+Actor user as u
+Actor owner as ow
+
+
+(temporal agreement) as temp
+
+
+u .right.> temp
+ow .left.> temp
+
+

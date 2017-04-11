@@ -1,0 +1,6 @@
+Actor Owner as u
+
+(refuse agreement) as temp
+
+u -right-> temp
+

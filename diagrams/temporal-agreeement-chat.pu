@@ -1,0 +1,13 @@
+Actor user as u
+Actor owner as ow
+
+
+(temporal agreement) as temp
+(chat) as c
+
+u .right.> temp
+ow .left.> temp
+temp <-down-> c
+
+u ..> c
+ow ..> c
