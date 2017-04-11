@@ -1,0 +1,4 @@
+Actor user as u
+
+(accomodation detail)  as al
+u -right-> al
