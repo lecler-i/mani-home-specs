@@ -1,0 +1,7 @@
+Actor Owner
+
+(Side menu) as side_menu
+(Owner dashboard) as owner_dashboard
+
+Owner -> side_menu
+side_menu -> owner_dashboard

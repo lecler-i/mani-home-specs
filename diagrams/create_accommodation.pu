@@ -1,0 +1,5 @@
+Actor Owner
+
+(New accommodtion) as new_accommodation
+
+Owner -> new_accommodation

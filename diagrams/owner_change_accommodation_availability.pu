@@ -1,0 +1,5 @@
+Actor Owner
+
+(Change accommodation availability) as change_availability
+
+Owner -> change_availability

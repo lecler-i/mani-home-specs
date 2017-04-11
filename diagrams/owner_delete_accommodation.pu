@@ -1,0 +1,5 @@
+Actor Owner
+
+(Delete accommodtion) as delete_accommodation
+
+Owner -> delete_accommodation
