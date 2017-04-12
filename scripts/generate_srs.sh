@@ -1,3 +1,3 @@
 #! /usr/bin/env sh
 cd srs/
-pandoc -o ../srs.pdf --latex-engine xelatex --toc *.md
+pandoc -s -o ../srs.pdf --latex-engine xelatex --toc *.md
