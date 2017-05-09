@@ -46,6 +46,7 @@ const images = {
   businessman: require("../assets/businessman.svg"),
   loupe: require("../assets/loupe.svg"),
   coding: require("../assets/coding.svg"),
+  money: require("../assets/money.svg"),
   coffee: require("../assets/coffee-cup.svg"),
 
   screens: {
@@ -53,7 +54,7 @@ const images = {
     map: require("../assets/map-with-skin.png"),
   },
   uml: {
-    // architecture: require('../../../diagrams/system-environment.pu.png'),
+    architecture: require('../assets/system-environment.pu.png'),
   },
 };
 
@@ -91,7 +92,6 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide transition={["fade"]} bgColor="tertiary">
-          <Heading size={6} textColor="primary" caps>Typography</Heading>
           <Layout>
           <Fill>
             <Image src={images.idea} width={150} style={{ margin: 40 }} />
@@ -103,7 +103,7 @@ export default class Presentation extends React.Component {
             <Image src={images.rocket} width={150} style={{ margin: 40 }} />
           </Fill>
           <Fill>
-            <Image src={images.idea} width={150} style={{ margin: 40 }} />
+            <Image src={images.money} width={150} style={{ margin: 40 }} />
           </Fill>
           </Layout>
         </Slide>
@@ -161,22 +161,38 @@ export default class Presentation extends React.Component {
           </Layout>
         </Slide>
 
-        <Slide transition={["fade"]} bgColor="tertiary">
-          <Heading size={4} textColor="primary" caps style={{ marginBottom: 100 }}>
-            Design Principles
+        <Slide transition={["fade"]} bgColor="primary">
+          <Heading size={4} textColor="tertiary" caps style={{ marginBottom: 100 }}>
+            Design Principle
           </Heading>
+          <Layout>
+
+          <Fill>
+            <Image src={images.uml.architecture} style={{margin: 50}} />
+          </Fill>
+
+          </Layout>
         </Slide>
 
         <Slide transition={["fade"]} bgColor="tertiary">
           <Heading size={4} textColor="primary" caps style={{ marginBottom: 100 }}>
-            Block Diagrams
+            Buisness Model
           </Heading>
+          <Image src={images.money} width={350} />
         </Slide>
+
+
 
         <Slide transition={["fade"]} bgColor="tertiary">
           <Heading size={4} textColor="primary" caps style={{ marginBottom: 100 }}>
             Work done
           </Heading>
+          <List>
+            <ListItem>Workflow</ListItem>
+            <ListItem>Project scope</ListItem>
+            <ListItem>Starter for API (server, Elixir)</ListItem>
+            <ListItem>Starter for the mobile app (cross-platform, ReactNative)</ListItem>
+          </List>
         </Slide>
 
         <Slide transition={["fade"]} bgColor="tertiary">
@@ -185,23 +201,41 @@ export default class Presentation extends React.Component {
           </Heading>
           <Layout>
             <Fill>
-              <Image src={images.coffee} style={{margin: 50}} />
+              <Image src={images.coding} style={{margin: 50}}/>
             </Fill>
             <Fill>
-              <Image src={images.coding} style={{margin: 50}}/>
+              <Image src={images.coffee} style={{margin: 50}} />
             </Fill>
           </Layout>
         </Slide>
 
-
-
-
-        <Slide transition={["fade"]} bgColor="secondary" textColor="primary">
-          <BlockQuote>
-            <Quote>Example Quote</Quote>
-            <Cite>Author</Cite>
-          </BlockQuote>
+        <Slide transition={[]} bgColor="tertiary">
+          <List>
+            <ListItem>Finish App and Server</ListItem>
+            <ListItem>Q/A testing</ListItem>
+            <ListItem>Playstore / Appstore publishing</ListItem>
+            <ListItem>Communication</ListItem>
+          </List>
         </Slide>
+
+        <Slide transition={["fade"]} bgColor="tertiary">
+          <Heading size={4} textColor="primary" caps>
+            Demonstration
+          </Heading>
+        </Slide>
+
+        <Slide transition={["fade"]} bgColor="tertiary">
+          <Heading size={4} textColor="primary" caps>
+            Thanks you for listening !
+          </Heading>
+          <Appear>
+            <Heading size={5} textColor="primary" caps>
+              Any questions ?
+            </Heading>
+
+          </Appear>
+        </Slide>
+
       </Deck>
     );
   }

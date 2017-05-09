@@ -1,3 +1,4 @@
+@startuml
 Actor user as u
 
 
@@ -5,3 +6,4 @@ Actor user as u
 
 
 u .right.> temp
+@enduml
