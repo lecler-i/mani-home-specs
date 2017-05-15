@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+  - "7"
+
+addons:
+  apt_packages:
+    - pandoc
+
+before_script:
+  - npm install -g gulp
+
+script:
+  - gulp build
