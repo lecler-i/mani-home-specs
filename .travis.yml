@@ -6,6 +6,7 @@ addons:
   apt_packages:
     - pandoc
     - graphviz
+    - xelatex
 
 before_script:
   - npm install -g gulp
@@ -21,4 +22,3 @@ deploy:
   github_token: $GITHUB_TOKEN
   on:
     branch: master
-  
