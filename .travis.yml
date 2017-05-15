@@ -5,9 +5,12 @@ node_js:
 addons:
   apt_packages:
     - pandoc
+    - plantuml
 
 before_script:
   - npm install -g gulp
 
+
 script:
+  - whereis plantuml
   - gulp build
