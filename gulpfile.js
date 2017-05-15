@@ -22,7 +22,8 @@ gulp.task('pdf', function() {
     .pipe(concat('final-report.md'))
     .pipe(pdf({
       pdfDir: 'build',
-      args: ['--latex-engine', 'xelatex', '--data-dir=build', '-S', '--filter',  'pandoc-plantuml-filter', '-V', 'documentclass=report', '--template=template.ltx']
+      args: ['--latex-engine', 'xelatex', '--data-dir=build', '-S', '-V', 'documentclass=report', '--template=template.ltx']
+       // '--filter',  'pandoc-plantuml-filter',
     }))
     .pipe(gulp.dest('build'));
 });
