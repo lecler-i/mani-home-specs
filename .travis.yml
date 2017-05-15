@@ -5,6 +5,7 @@ node_js:
 addons:
   apt_packages:
     - pandoc
+    - graphviz
 
 before_script:
   - npm install -g gulp
