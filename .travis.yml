@@ -5,12 +5,12 @@ node_js:
 addons:
   apt_packages:
     - pandoc
-    - plantuml
+
 
 before_script:
+  - wget https://downloads.sourceforge.net/project/plantuml/plantuml.jar?r=&ts=1494848178&use_mirror=excellmedia /tmp/plantuml.jar
   - npm install -g gulp
 
 
 script:
-  - whereis plantuml
   - gulp build
