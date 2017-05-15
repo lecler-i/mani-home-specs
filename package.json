@@ -8,6 +8,7 @@
     "gulp-concat": "^2.6.1",
     "gulp-pandoc": "^0.2.2",
     "gulp-pandoc-pdf": "^0.1.3",
+    "gulp-plantuml": "0.0.1",
     "gulp-plumber": "^1.1.0",
     "gulp-puml": "^0.1.24",
     "gulp-sort": "^2.0.0",
