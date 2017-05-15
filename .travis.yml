@@ -6,6 +6,7 @@ addons:
   apt_packages:
     - pandoc
     - graphviz
+    - texlive-latex-recommended
     - texlive-xetex
 
 before_script:
