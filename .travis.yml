@@ -8,6 +8,7 @@ addons:
     - graphviz
     - texlive-latex-recommended
     - texlive-xetex
+    - fonts-lmodern
 
 before_script:
   - npm install -g gulp
