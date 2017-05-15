@@ -10,6 +10,7 @@ addons:
     - texlive-latex-recommended
     - texlive-xetex
     - texlive-latex-extra
+    - lmodern
 
 before_script:
   - npm install -g gulp
