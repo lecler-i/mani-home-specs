@@ -30,7 +30,7 @@ gulp.task('pdf', function() {
 gulp.task('uml', function() {
   return gulp.src('diagrams/*.puml')
     .pipe(plantuml({
-      jarPath: '/opt/plantuml/plantuml.jar',
+      jarPath: 'node_modules/gulp-puml/node_modules/.bin/plantuml.jar',
     }))
     .pipe(gulp.dest('build/uml/'));
 });
