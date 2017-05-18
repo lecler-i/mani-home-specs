@@ -14,7 +14,7 @@ header-includes:
     - \patchcmd{\chapter}{\thispagestyle{plain}}{\thispagestyle{fancy}}{}{}
 
 mainfont: Nimbus Roman
-fontsize: 16pt
+fontsize: 26pt
 papersize: a4
 geometry: margin=4cm
 ...
