@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title></title>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+  </style>
+</head>
+<body>
+<table>
+<col style="width: 23%" /><col style="width: 23%" /><thead>
+<tr class="header">
+<th style="text-align: left;">title: ManiHome author: - Martin KINOO - Thomas LECLER date: April 11 20 toc: true header-includes: - - \pagestyle{ -  - [ - [ - [ - [ - - - - \patchcmd{  mainfont: Nimbus fontsize: 16pt papersize: a4 geometry: margin= … # Introduction Looking for a fl Their is only few or browsing some<br>Their is actuall dedicated to appa The problem with is that you will no such functiona of interest). Contacting a bro are looking for a for a cost of a h We offer via Man with plenty of se It’s a market th and their is a hu ## 1.1 Overview<br>Our project will It will need very managed by us. We Anyone installin own (like a ebay, Technically, the ## 1.2 Objective Our app goal is<br>For this, we fir After that, we n # Software Requi ## 2.1 Introduct Tis section give ### 2.1.1 Docume The purpose of t It will explain<br>This document in ### 2.1.2 Scope This software sy This mobile appl By providing a r The software wil ### 2.1.3 Def Definitions of t Term</th>
+<th style="text-align: left;">CQ 17 {fancyhdr} fancy} C]{ManiHome} L]{Department of Computer Applications} C]{} R]{M.I.T, Manipal} nd{}{0.4pt} nd{}{0.4pt} {etoolbox} chapter}{}{}{}{} Roman 4cm at, a room or simply a roomate in Manipal can be a hard task. way to find what you are looking for : by friend telling you, a broker Facebook page deidcated to general buy/sell. y no functional website offering a platform to post / browse classified rtment/house renting. searching on (more than 5) Facebook pages or contacting one of the 10+ brokers in manipal not be able to have some listing of flats matching your criterias, lities is available on facebook (you have to browse all the ads and read them to filter out the ones ker can be a good solution because you can tell him exactly what you nd he will give you a list of available accommodations but it will be alf a month of rent usually. iHome a very simple application to create your ad or to look for some, arch filters and amenities listing that is totally free and easy to use. at is literally empty on the internet (brokers doen’t have websites) ge possibilitie because of Manipal students are big mobile users. of the proposed system be a mobile application on Android (later on maybe iOS) platform. low maintenance cause the application will be peer to peer, not will only to basic moderation and software updates. g the app can browse the listing of available offers and create their olx). system will just need a hosting plan for the database and API. s to give a platform to find an accommodation in manipal as easy as possible. st need to give an easy solution to add an accommodation for rent and find one that can match the potential tenant. In order to achieve that, we implement a simple form to add an accommodation. Each accommodation can be find in a list and also visualise on a map. eed a way for tenant to contact the accommodation owner. For that, we implement a chatroom between potentiant tenant and owner. This way, they can contact each other and have an agreement. rement Specification ion s a scope description and overview of everything included in this SRS document. Also, the purpose for this document is described and a list of abbreviations and definitions is provided. nt purpose his document is to present a detailed description of ManiHome, an Android mobile application, a server-side database and their communication API. the purpose and features of the mobile application, what this app will do, describe the communication between the database and the app, justify our design and implementation choice. tended for the MIT teacher but also for us in order to stay clear on our goal. stem will be a mobile application for Manipal resident (and future residents). ication will be designated to help people find an accommodation by providing listings of available renting wich will be added by users themselves. ent listing and allow peoples to add their owns, it will ease newcomers to find easily an accommodation in Manipal using various filters to meet their needs. l facilite commucation between home-seekers and owners/brokers and their available accomodations. initions, Acronyms and Abbreviations he differents terms used in the document. Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">User Accommodation Searcher Owner</td>
+<td style="text-align: left;">Person that use ManiHome application. An appartment or house available for renting. User who is looking for an accommodation. User who own a accommodation listing.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="overall-description">2.2 Overall Description</h2>
+<p>The following of this document gives an overview of the functionality of the product. It describes the informal requirements and is used to establish a context for the technical requirements specification in the next part.</p>
+<p>The Specific Requirements section, of this document, is written primarily for us and describes in technical terms the details of the functionality of the product.</p>
+<p>Both sections of the document describe the same project in its entirety.</p>
+<h3 id="product-perspective">2.2.1 Product Perspective</h3>
+<p>This system will consist of two parts: one mobile application and one API server. The mobile application will be used to find accommodations and view information about them while the API server will be used for by the mobile application to store and serve the datas.</p>
+<p>Since this is a data centric product it will need somewhere to store the data. For that, a database will be used.</p>
+<p>The API server will communicate to the database and provide a API Endpoint (HTTP/json) tol provide the mobile application with the datas.</p>
+<p>The mobile application will then use the server API Endpoint to get data and modify data. All of the mobile application communications will go over the Internet.</p>
+<figure>
+<img src="build/uml/system-environment.png" alt="System environment Diagram"><figcaption>System environment Diagram</figcaption>
+</figure>
+<h3 id="product-functionality">2.2.2 Product Functionality</h3>
+<p>With the mobile application, the users will be able to search for accommodations. The result will be based on the criteria the user inputs. There are several search criteria based on coordinates, price, number of rooms ect… The seach criteria can be empty.</p>
+<p>The result of the search will be viewed either in a list view or in a map view.</p>
+<p>The list view will have one list item for each accommodations matching the search criteria and show a small part of the accommodation information so the user can identify it.</p>
+<p>The map view will show each accommodation location as a pin on the map. In both views the users will be able to access an other screen with complete view of information of a specific accommodation.</p>
+<h3 id="user-characteristics">2.2.3 User characteristics</h3>
+<p>There are two types of users that interact with the system: - users of the mobile application - accommodation owners</p>
+<p>Each of these two types of users has different use of the system so each of them has their own requirements.</p>
+<p>The mobile application users can only use the application to find a accommodation and chat with its owner. This means that the user have to be able to search for accommodations, choose a accommodation from that search and then start chatting with its owner. In order for the users to get a relevant search result there are multiple (optionals) criteria the users can specify and all results matches all of those.</p>
+<p>The restaurant owners will use the mobile application and be able to search for accommodations like a normal user but will aswell be able to manage the information about their accommodations, for example a description of the accommodation, rent price, type of accommodation…</p>
+<h3 id="assumptions-and-dependencies">2.2.4 Assumptions and Dependencies</h3>
+<p>One assumption about the product is that it will always be used on mobile phones that have enough performance. If the phone does not have enough hardware resources available for the application, for example the users might have allocated them with other applications , there may be scenarios where the application does not work as intended or even at all.</p>
+<p>Another assumption is that the mobile phones have a available internet connection (via mobile data or WIFI)</p>
+<h3 id="design-and-implementation-constraints">2.2.5 Design and Implementation Constraints</h3>
+<p>The mobile application is constrained by the Internet connection of the phone.</p>
+<p>Since the application fetches data from the API server over the Internet, it is crucial that there is an Internet connection for the application to function.</p>
+<h2 id="specific-requirements">2.3 Specific Requirements</h2>
+<p>This section contains all of the functional and quality requirements of the system. It gives a detailed description of the system and all its features.</p>
+<h3 id="hardware-requirements">2.3.1 Hardware Requirements</h3>
+<p>Since neither the mobile application nor the API server have any designated hardware, it does not have any direct hardware interfaces.</p>
+<p>The Internet connection to the API server is managed by the underlying operating system on the mobile application.</p>
+<h3 id="software-requirements">2.3.2 Software Requirements</h3>
+<p>The mobile application communicates with the API server in order to get the information about the accommodations and modifying accommodations (for the accommodations owners and chat messages in general).</p>
+<p>The communication between the database and the API server consists of operation concerning both reading and modifying the data</p>
+<h3 id="user-interface-requirements">2.3.3 User Interface Requirements</h3>
+<p>A first-time user of the mobile application should see the log-in page when he/she opens the application, see Figure </p>
+<p>If the user is not a first time user, he/she should be able to see the accommodation listing page directly when the application is opened, see Figure </p>
+<p>Here the top-right icon show where the user can click to navigate to the filter page to set search criteras.</p>
+<p>The user can apply some search criteras to chooses the type of search he/she wants to conduct, see Figure </p>
+<p>From the accommodation listing page, the top-left icon shows where the user can click to access the main menu, see figure </p>
+<p>From the accommodation listing or the map view, when the user click on one entry it jump to the accommodation details page for the selected one, see Figure </p>
+<p>From the navigation drawer, the user can access the map view by clicking on the “Map” entry where a map of Manipal will be displayed with pins and accommodation description, see Figure </p>
+<figure>
+<img src="imgs/screenshots/login_page.png" alt="Login Page"><figcaption>Login Page</figcaption>
+</figure>
+<figure>
+<img src="imgs/screenshots/main_page.png" alt="Accommodation Listing Page"><figcaption>Accommodation Listing Page</figcaption>
+</figure>
+<figure>
+<img src="imgs/screenshots/filters.png" alt="Filter Page"><figcaption>Filter Page</figcaption>
+</figure>
+<figure>
+<img src="imgs/screenshots/drawer.png" alt="Main menu drawer"><figcaption>Main menu drawer</figcaption>
+</figure>
+<figure>
+<img src="imgs/screenshots/accommodation_details.png" alt="Accommodation details "><figcaption>Accommodation details </figcaption>
+</figure>
+<figure>
+<img src="imgs/screenshots/map_view.png" alt="Map view "><figcaption>Map view </figcaption>
+</figure>
+<h3 id="communication-requirements">2.3.4 Communication Requirements</h3>
+<p>The communication between the different parts of the system is important since they de pend on each other. However, in what way the communication is achieved is not important for the system and is therefore handled by the underlying operating systems for both the mobile application and the API server.</p>
+<h3 id="functional-requirements">2.3.5 Functional Requirements</h3>
+<p>This section includes the requirements that specify all the fundamental actions of the software system</p>
+<h4 id="use-case-user">2.3.5.1 Use case : user</h4>
+<p><strong>Use case:</strong> account management</p>
+<p><strong>Diagram:</strong></p>
+<figure>
+<img src="build/uml/user_connect.png" alt="User Account"><figcaption>User Account</figcaption>
+</figure>
+<p><strong>Brief Description</strong></p>
+<p>Each user can register/connect in a simple way with a facebook or a google account. After creation of an account, a user can manage it.</p>
+<p><strong>Initial Step-By-Step Description</strong></p>
+<ol type="1">
+<li>The user chooses to login with a Facebook or a Google account on the mobile app.</li>
+<li>The server receives an authentification token and user data, log in the user.</li>
+<li>The server sends back the user data to the mobile app, the user is now connected.</li>
+</ol>
+<hr>
+<p><strong>Use case:</strong> list accommodation</p>
+<p><strong>Diagram:</strong></p>
+<figure>
+<img src="build/uml/user_acco_list.png" alt="User Account"><figcaption>User Account</figcaption>
+</figure>
+<p><strong>Brief Description</strong></p>
+<p>Each user can access to the available accommodations list shown on a map.</p>
+<p><strong>Initial Step-By-Step Description</strong></p>
+<ol type="1">
+<li>The mobile app asks the server to have the available accommodations list.</li>
+<li>The server sends back the accommodations list.</li>
+<li>the mobile app connect to google map to have a map. 4 . the mobile app show to the user a map of Manipal with accommodations location.</li>
+</ol>
+<hr>
+<p><strong>Use case:</strong> list accommodation filtred</p>
+<p><strong>Diagram:</strong></p>
+<figure>
+<img src="build/uml/user_filter_acco.png" alt="User Account"><figcaption>User Account</figcaption>
+</figure>
+<p><strong>Brief Description</strong></p>
+<p>The user can select a filter to help him to find an accommodation that fit is needed.</p>
+<p><strong>Initial Step-By-Step Description</strong></p>
+<ol type="1">
+<li>The user define his filter in the mobile app</li>
+<li>the mobile app send a request to the server to get a filter accommodations list.</li>
+<li>the server send back the filtered accommodations list.</li>
+<li>the mobile app updates the map with the new accommodations locations.</li>
+</ol>
+<hr>
+<p><strong>Use case:</strong> get accommodation details</p>
+<p><strong>Diagram:</strong></p>
+<figure>
+<img src="build/uml/user_acco_dt.png" alt="User Account"><figcaption>User Account</figcaption>
+</figure>
+<p><strong>Brief Description</strong></p>
+<p>The user can access to more details when he selects an accommodation.</p>
+<p><strong>Initial Step-By-Step Description</strong></p>
+<ol type="1">
+<li>The user touches an accommodation on the map.</li>
+<li>the mobile app send a request to the server to get the accommodation details.</li>
+<li>the server send back data for a given accommodation.</li>
+<li>the mobile app show accommodation detail.</li>
+</ol>
+<hr>
+<p><strong>Use case:</strong> create temporal agreement</p>
+<p><strong>Diagram:</strong></p>
+<figure>
+<img src="build/uml/temporal_agreement.png" alt="User Account"><figcaption>User Account</figcaption>
+</figure>
+<p><strong>Brief Description</strong></p>
+<p>The user can choose an accommodation that fit his needs, a create a tempory agreement. A tempory agreement is an agreement that the owner have to validate before.</p>
+<p><strong>Initial Step-By-Step Description</strong></p>
+<ol type="1">
+<li>The user ask to make a temporal agreement to an accommodation</li>
+<li>the mobile app send a request to the server to create a tempory agreement linked to the accommodation, between the user and the owner.</li>
+<li>the server send back a validation</li>
+<li>the mobile app show a validation</li>
+</ol>
+<hr>
+<p><strong>Use case:</strong> list all chats</p>
+<p><strong>Diagram:</strong></p>
+<figure>
+<img src="build/uml/list_chats.png" alt="User Account"><figcaption>User Account</figcaption>
+</figure>
+<p><strong>Brief Description</strong></p>
+<p>The user can chat with many owners. Every time a temporal agreement is made, a chat is created between the user and the owner.</p>
+<p><strong>Initial Step-By-Step Description</strong></p>
+<ol type="1">
+<li>The user click on “chat” on the side menu</li>
+<li>The mobile app request the server to have an available chat list</li>
+<li>The server send back the available chat list</li>
+<li>the mobile app show the available chat list to the user</li>
+</ol>
+<hr>
+<p><strong>Use case:</strong> select a chat to interact with</p>
+<p><strong>Diagram:</strong></p>
+<figure>
+<img src="build/uml/chat.png" alt="User Account"><figcaption>User Account</figcaption>
+</figure>
+<p><strong>Brief Description</strong></p>
+<p>The user can select a chat to interact with.</p>
+<p><strong>Initial Step-By-Step Description</strong></p>
+<ol type="1">
+<li>The user click on “chat” on the side menu</li>
+<li>The mobile app request the server to have access to this chat</li>
+<li>The server send back data and the history conversation about the given chat 4 . the mobile app show the data and history conversation for the previously selected chat</li>
+</ol>
+<hr>
+<p><strong>Use case:</strong> send a message in a chat</p>
+<p><strong>Diagram:</strong></p>
+<figure>
+<img src="build/uml/send_chat.png" alt="User Account"><figcaption>User Account</figcaption>
+</figure>
+<p><strong>Brief Description</strong></p>
+<p>The user can send a message to a chat.</p>
+<p><strong>Initial Step-By-Step Description</strong></p>
+<ol type="1">
+<li>When a chat is selected, the user can write a message</li>
+<li>The mobile app show back the type message</li>
+<li>The user click on “send”</li>
+<li>The mobile app send the message to the server</li>
+<li>The server send back an acknowledgment of receipt</li>
+<li>The mobile app show to the user that the message is well sent.</li>
+</ol>
+<hr>
+<p><strong>Use case:</strong> receive a message from chat</p>
+<p><strong>Diagram:</strong></p>
+<figure>
+<img src="build/uml/receive_chat.png" alt="User Account"><figcaption>User Account</figcaption>
+</figure>
+<p><strong>Brief Description</strong></p>
+<p>The user can receive a message from a chat when he is connected to the app.</p>
+<p><strong>Initial Step-By-Step Description</strong></p>
+<ol type="1">
+<li>When a new message sends by the other user in a chat, the server sends this message to the user.</li>
+<li>the mobile app receive the message from the server.</li>
+<li>The mobile app shows the new message to the user.</li>
+</ol>
+<h4 id="use-case-accommodation-owner">2.3.5.1 Use case : accommodation owner</h4>
+<p><strong>Use case:</strong> Owner dashboard</p>
+<p><strong>Diagram:</strong></p>
+<figure>
+<img src="build/uml/owner_dashboard.png" alt="User Account"><figcaption>User Account</figcaption>
+</figure>
+<p><strong>Brief Description</strong></p>
+<p>An owner can access is the dashboard to manage his accommodations.</p>
+<p><strong>Initial Step-By-Step Description</strong></p>
+<ol type="1">
+<li>The user clicks on the “Owner mode” in the side menu.</li>
+<li>The server sends the listing of all the accommodations owned by the user.</li>
+<li>the owner access a screen with the list of all the accommodations that it own.</li>
+</ol>
+<hr>
+<p><strong>Use case:</strong> Create a new accommodation</p>
+<p><strong>Diagram:</strong></p>
+<figure>
+<img src="build/uml/create_accommodation.png" alt="User Account"><figcaption>User Account</figcaption>
+</figure>
+<p><strong>Brief Description</strong></p>
+<p>The owner can create a new accommodation that he will own.</p>
+<p><strong>Initial Step-By-Step Description</strong></p>
+<ol type="1">
+<li>In the owner dashboard, click on the button <code>New accommodation</code>.</li>
+<li>The owner will fill basic information in a form : <code>price</code>, <code>accommodation type</code>, <code>availability date</code>, <code>name</code>.</li>
+<li>Next screen will be a Map of Manipal where the owner will have to situate the accommodation.</li>
+<li>Next screen, the owner can upload one or more photo or the accommodation.</li>
+<li>For each step before, the inputs will be sent to the server.</li>
+</ol>
+<hr>
+<p><strong>Use case:</strong> Edit an accommodation</p>
+<p><strong>Diagram:</strong></p>
+<figure>
+<img src="build/uml/owner_edit_accommodation.png" alt="User Account"><figcaption>User Account</figcaption>
+</figure>
+<p><strong>Brief Description</strong></p>
+<p>By clicking on one the accommodation in the owner dashboard, he can edit one of them.</p>
+<p><strong>Initial Step-By-Step Description</strong></p>
+<ol type="1">
+<li>In the owner dashboard, the owner clicks on the accommodation he wishes to edit.</li>
+<li>The owner can edit the information, map location or images the same way as the previous use case <code>Create a new accommodation</code>.</li>
+<li>Updates will be sent to the server via the API.</li>
+</ol>
+<hr>
+<p><strong>Use case:</strong> Delete an accommodation</p>
+<p><strong>Diagram:</strong></p>
+<figure>
+<img src="build/uml/owner_delete_accommodation.png" alt="User Account"><figcaption>User Account</figcaption>
+</figure>
+<p><strong>Brief Description</strong></p>
+<p>An owner can delete one of his accommodations.</p>
+<p><strong>Initial Step-By-Step Description</strong></p>
+<ol type="1">
+<li>On the owner dashboard, the owner will click on te accommodation he wishes to delete.</li>
+<li>On the overview of the accommodation, the owner clicks on the button <code>Delete</code>.</li>
+<li>A confirmation dialog box will appear to confirm or no the deletion.</li>
+<li>If he confirms the deletion, the action is sent to the server and the accommodation is deleted.</li>
+</ol>
+<hr>
+<p><strong>Use case:</strong> Change accommodation availability</p>
+<p><strong>Diagram:</strong></p>
+<figure>
+<img src="build/uml/owner_change_accommodation_availability.png" alt="User Account"><figcaption>User Account</figcaption>
+</figure>
+<p><strong>Brief Description</strong></p>
+<p>An owner can flag one of his accommodation as rented or not (and until when).</p>
+<p><strong>Initial Step-By-Step Description</strong></p>
+<ol type="1">
+<li>On the owner dashboard, the owner will click on te accommodation he wishes to interact with.</li>
+<li>On the overview of the accommodation, the owner clicks on the button <code>Change status</code>.</li>
+<li>A modal box will appear where he can choose till when the accommodation is unavailable.</li>
+<li>The new information will be sent to the server and the accommodation will not appear anymore according to the date selected.</li>
+</ol>
+<hr>
+<p><strong>Use case:</strong> List of Agreements</p>
+<p><strong>Diagram:</strong></p>
+<figure>
+<img src="build/uml/owner_list_agreements.png" alt="User Account"><figcaption>User Account</figcaption>
+</figure>
+<p><strong>Brief Description</strong></p>
+<p>An owner can access the list rent agreements related to his accommodations.</p>
+<p><strong>Initial Step-By-Step Description</strong></p>
+<ol type="1">
+<li>On the owner dashboard, in the side menu, the owner click on the menu entry <code>Agreements</code>.</li>
+<li>The application will request to the server the agreements for this user.</li>
+<li>The agreements will appear on the screen as a list.</li>
+</ol>
+<hr>
+<p><strong>Use case:</strong> Overview of an Agreements</p>
+<p><strong>Diagram:</strong></p>
+<figure>
+<img src="build/uml/owner_view_agreement.png" alt="User Account"><figcaption>User Account</figcaption>
+</figure>
+<p><strong>Brief Description</strong></p>
+<p>An owner can view the details of an agreement.</p>
+<p><strong>Initial Step-By-Step Description</strong></p>
+<ol type="1">
+<li>On the list of agreements (use case <code>List of Agreements</code> the owner click on one of them.</li>
+<li>On the screen, appear all the details of the selected agreement and the differents actions.</li>
+</ol>
+<hr>
+<p><strong>Use case:</strong> Edit an agreement</p>
+<p><strong>Diagram:</strong></p>
+<figure>
+<img src="build/uml/owner_edit_agreement.png" alt="User Account"><figcaption>User Account</figcaption>
+</figure>
+<p><strong>Brief Description</strong></p>
+<p>An owner can edit the terms of an agreement.</p>
+<p><strong>Initial Step-By-Step Description</strong></p>
+<ol type="1">
+<li>On an agreement overview, the owner clicks on the <code>Edit</code> button.</li>
+<li>The owner can edit the dates, rent price of an agreement.</li>
+<li>The new information will be sent to the server and a predefined message with the new updates will be sent to the chatroom of the agreement.</li>
+</ol>
+<hr>
+<p><strong>Use case:</strong> Accept a pending agreement</p>
+<p><strong>Diagram:</strong></p>
+<figure>
+<img src="build/uml/owner_accept_agreement.png" alt="User Account"><figcaption>User Account</figcaption>
+</figure>
+<p><strong>Brief Description</strong></p>
+<p>An owner can accept a pending agreement to seal the agreement.</p>
+<p><strong>Initial Step-By-Step Description</strong></p>
+<ol type="1">
+<li>On an agreement overview, the owner clicks on the <code>Accept</code> button.</li>
+<li>A request will be sent to the server, changing the status of the agreement notifying the user associated with predefined message in the chatroom.</li>
+<li>The server will change the accommodation availability date according to the agreement dates.</li>
+</ol>
+<hr>
+<p><strong>Use case:</strong> Refuse a pending agreement</p>
+<p><strong>Diagram:</strong></p>
+<figure>
+<img src="build/uml/owner_refuse_agreement.png" alt="User Account"><figcaption>User Account</figcaption>
+</figure>
+<p><strong>Brief Description</strong></p>
+<p>An owner can refuse a pending agreement.</p>
+<p><strong>Initial Step-By-Step Description</strong></p>
+<ol type="1">
+<li>On an agreement overview, the owner clicks on the <code>Refuse</code> button.</li>
+<li>A request will be sent to the server, deleting the agreement and notifying the user by sending a predefined message in the chatroom.</li>
+</ol>
+<h2 id="non-functional-requirements">2.4 Non-functional Requirements</h2>
+<h3 id="behavioural-requirements">2.4.1 Behavioural Requirements</h3>
+<p>fkjas;lf af a lkajfaf a klj lafjlakjfa lfjalkfjaljalfjla ja;fja lfjaljf ;laajflkajf;lajf akjlaf- jafkjas;lf af a lkajfaf a klj lafjlakjfa lfjalkfjaljalfjla ja;fja</p>
+<hr>
+<h3 id="performance-requirements">2.4.2 Performance Requirements</h3>
+<p>Their is no performance requirements because the system is dependant on the operating system and hardware.</p>
+<p>Common best practices on the database queries will be needed but will not have a big impact because the user base is restricted to Manipal only, the system will have a very low charge.</p>
+<p>The communication speed from the mobile application to the API server is dependant to the Internet connection (Wifi/Data speed).</p>
+<p>Both the mobile application and API server are designed and coded on optimal framework able to handle thousands of request per second, that we will never reached on this phase of the project.</p>
+<p>However API server and database are designed in a way that if needed, we will be able to scale them on multiple hosts to ensure large traffic without performance loose.</p>
+<h3 id="safety-and-security-requirements">2.4.3 Safety and Security requirements</h3>
+<p>Consistency: In case of a potential loss of connection between the mobile application and the API server the owners doing change on their listings, all progress so far is lost.</p>
+<p>In case of a potential API server breakdown, the database data (all the accommodations and chats may be lost. A daily backup of the database is done, so any breakdown will result in a rollback of 1day with possible lost of all chats and creation/edit of accommodation for a timespan of the last 24h.</p>
+<h3 id="software-quality-attributes">2.4.4 Software Quality Attributes</h3>
+<h4 id="availability">Availability</h4>
+<p>Checking that the system always has something to funtion and always pop up error messages in case of component failure. In that case the error messages appear when something goes wrong so to prevail availability problems.</p>
+<h4 id="usability">Usability</h4>
+<p>Checking that the system is easy to handle and navigates in the most expected way with no delays. In that case the system program reacts accordingly and transverses quickly between its states.</p>
+<h4 id="functionality">Functionality</h4>
+<p>Checking that the system provide the right tools for editing question databases, creating session tests and analyzing the test sessions. In that case the tools that the Database editor provide are the ones that provide that attribute</p>
+<h4 id="portability">Portability</h4>
+<p>The API server is containerized (via Docker), that will permit to run it on any host with the docker-tools available in a few seconds with no setup steps. The mobile applications use a cross-platform build tool that allow to build for the two main mobile phone plateforms : android and iOS, supporting a wide range of versions.</p>
+<h4 id="security">Security</h4>
+<p>Checking that the system is secured against user usurpations via a wide range of unit testing and pentesting. Checking the API server logs with a tool to watch and analyze logs in case of attack (DDOS, XSI) with open-source tools available.</p>
+<h2 id="process-model">2.5 Process Model</h2>
+<p>lkjaflja;lf ajfljalkfja ajflkajlkjalkfj ;lalfkjafja ajflkjalfkja llajfla fljalfjalfja;lkjfla flk- jalkfj ;alkasjflkajlkfja lfjalkfj;lka jlkajf;lkajflksajflkajflkj;lkjaf;</p>
+<h2 id="development-approach">2.6 Development Approach</h2>
+<p>lkjaflja;lf ajfljalkfja ajflkajlkjalkfj ;lalfkjafja ajflkjalfkja llajfla fljalfjalfja;lkjfla flk- jalkfj ;alkasjflkajlkfja lfjalkfj;lka jlkajf;lkajflksajflkajflkj;lkjaf;la</p>
+<h2 id="team-structure">2.7 Team Structure</h2>
+<p>The team is composed of two members</p>
+<ul>
+<li>Martin KINOO</li>
+<li>Thomas LECLERCQ</li>
+</ul>
+<p>As the system is composed of only two applications (mobile application and API server), the two members have their dedicated parts.</p>
+<p>Martin : API server</p>
+<p>Thomas : mobile application</p>
+<p>Both members have very good skills on the techologies required for their task.</p>
+<p><img src="imgs/martin.jpg" alt="Martin"> <img src="imgs/thomas.jpg" alt="Thomas"></p>
+<h2 id="duration">2.8 Duration</h2>
+<p>We started to work on the project on mid-march.</p>
+<h4 id="week-1">Week 1</h4>
+<ul>
+<li>brain-storming</li>
+<li>system conception</li>
+<li>UI/UX design</li>
+<li>database conception</li>
+</ul>
+<h4 id="week-2---3">Week 2 - 3</h4>
+<p>Learning, reading about technologies choosen for the mobile application and API server</p>
+<h4 id="week-4">Week 4</h4>
+<ul>
+<li>mobile application bootstraping</li>
+<li>API server bootstraping</li>
+</ul>
+<h4 id="week-5">Week 5</h4>
+<ul>
+<li>workflow setup</li>
+<li>continuous integrations setup</li>
+<li>continuous deployment setup</li>
+</ul>
+<h4 id="week-3---now">Week 3 -&gt; now</h4>
+<p>mobile application and API server development</p>
+<h1 id="software-design">Software Design</h1>
+<h2 id="introduction">3.1 Introduction</h2>
+<p>The Software Design Document is a document to provide documentation which will be used to aid in software development of Manihone, client and server side, by providing the details for how the software should be built. Within the Software Design Document are narrative and graphical documentation of the software design for the project including use case models, sequence diagrams, collaboration models and object behavior models.</p>
+<h3 id="document-purpose">3.1.1 Document purpose</h3>
+<p>The purpose of this document is to outline the software design of Manihome, including the client side (Android application) and an API server side (Elixir/Phoenix). Manihome is an application to help accommodation owner to rent it, and potential tenant to find one in Manipal. That will be developed for our second semester in MIT.</p>
+<h3 id="scope">3.1.2 Scope</h3>
+<p>This document aims to be a guide for developers to implement the prospective Manihome project. The software will consist of two major components: an application that runs on smartphone which will allow user to post an accommodation for rent, to find one that fit you as a tenant, and being able to communicate with the owner or the potential tenant, and a server application that processes user registration, accommodation form and manage a chatroom.</p>
+<h3 id="definitions-acronyms-and-abbreviations">3.1.3 Definitions, Acronyms and Abbreviations</h3>
+<p><em>Android</em> An operating system for mobile applications. This is the targeted platform of the mobile app. <em>chatroom</em> virtual place where user can discuss between us. <em>owner</em> user that own accommodation and put an advertisment on Manihome <em>tenant</em> user looking for an accommodation on Manihome</p>
+<h2 id="initial-design">3.2 Initial Design</h2>
+<h3 id="introduction-1">3.2.1 Introduction</h3>
+<p>Traditional accommodation rent are often limited to private agencies, word of mouth, and didn’t have a central solution to find the perfect place to live. The Manihome project will use Web and mobile technology brings one and unique place to find the perfect accommodation in Manipal to anybody whose have a smartphone.</p>
+<h3 id="technology-used">3.2.2 Technology Used</h3>
+<p>The Manihome project is made of 2 parts, the mobile application running on Android, communicating with the API server that manage a database of users, accommodations and chatroom.</p>
+<p>Each user need an Android (and IOS later) smartphone for running the mobile application, developed with React-native, a framework for building native application with the power of web technology, more specially React.</p>
+<p>The Manihome project also need one server running the API, developed in elixir/phoenix.</p>
+<h3 id="system-architecture">3.2.3 System Architecture</h3>
+<p>Manihome project is made of two parts, a mobile application, as an interface for users, that communicate with the API Server, which manage data for the project. The required deviced for user is an Android smartphone, the project also need one webThe interface for storing, importing and exporting server to run the server API.</p>
+<ul>
+<li><em>JWT</em> JSON Web Tokens are an open, industry standard RFC 7519 method for representing claims securely between two parties.</li>
+<li><em>Auth0</em> Third party single sign on and token based authentication for Facebook and Google authentification.</li>
+<li><em>Joken</em> Elixir JWT library (server side)</li>
+<li><em>Data Model</em> The interface for storing, importing and exporting all Manihome data.</li>
+</ul>
+<figure>
+<img src="build/uml/architecture_system.png" alt="Manihome Architecture"><figcaption>Manihome Architecture</figcaption>
+</figure>
+<h2 id="user-interface-design">3.3 User Interface Design</h2>
+<h3 id="introduction-2">3.3.1 Introduction</h3>
+<p>This document provide an explanation for manihome user interface, first a standard explanation then a interface walkthrough. This document is intented to be read by any user.</p>
+<h3 id="user-interface-standard">3.3.2 User interface standard</h3>
+<p>When the user launch the application the first time, a login page is shown where he can choose between facebook or google authentification. When is log in, the user access to the application.</p>
+<p>The application is made of two main part, a main view and a sidebar view. The user can access to the sidebar view by the main view and he can choose a new render for the main view between:</p>
+<ul>
+<li><em>List</em> a current list with all availables accomodations, the user can access to the accommodation view.</li>
+<li><em>Map</em> a map is shown with the location of all availables accommodations, similar to List.</li>
+<li><em>Message</em> a list with all the chat the user is implied in, he can access to a chat view for a given chat.</li>
+<li><em>My listing</em> a list with only the users accommodations</li>
+</ul>
+<p>In the sidebar view, the user can also choose to <em>Log out</em>.</p>
+<p>The accommodation view list all the accommodation data and give to the user the possibility to create a chat between him and the owner. The chat view is a typicall chatroom between accommodation owner and potential tendent, where the user can see his message, the other user messages and send a new one.</p>
+<h3 id="user-interface-walkthrough">3.3.3 User interface walkthrough</h3>
+<p>The given diagram explain the procedure to use the manihome application.</p>
+<figure>
+<img src="imgs/user_interface2.png" alt="User Interface Walkthrough Diagram"><figcaption>User Interface Walkthrough Diagram</figcaption>
+</figure>
+<h1 id="testing-and-implementation-details">Testing and Implementation Details</h1>
+<h2 id="testing-strategy">4.1 Testing Strategy</h2>
+<p>The testing approach for this project shall be done in a fashion that will accommodate the current functionality in ManiHome Application and the API.</p>
+<p>Functional Unit testing of the source code is set for both the systems on the continuous integration pipeline, preventing a new release in case of fault.</p>
+<p>Testing will be designed to encompass the following</p>
+<ul>
+<li>Testing will cover functionality testing for the mobile App changes through the use of the test interface. This will validate base functions of the new code as it relates to the standard model of presentation for data and user entered data.</li>
+<li>Testing will cover functionalities of the API doing classic functional unit tests and testing the endpoint trough the HTTP protocol.</li>
+</ul>
+<h2 id="levels-of-testing">4.2 Levels of testing</h2>
+<p>Testing is done on two levels : - Functional : source code unit testing before deployment in production - Human : on a staging environment, each release of the application is tested by us and some few friends to be sure everything is working correctly.</p>
+<h3 id="functional-unit-testing">4.2.1 Functional Unit Testing</h3>
+<p>On the two code projects (Mobile App and Server) unit testings are done automaticly on every modifications done to the source code via continuous integration. Using GIT for versioning and Travis-CI for continuous integration, every commits are checked by those.</p>
+<p>A release can only be made if all the test are without failure.</p>
+<h4 id="manihome-application-react-native">ManiHome Application (React-native)</h4>
+<p>Using Jest</p>
+<h4 id="manihome-server-elixir-phoenix">ManiHome Server (Elixir, phoenix)</h4>
+<p>Using <code>ExUNIT</code></p>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ mix <span class="kw">test</span>
+Finished <span class="kw">in</span> 0.4 seconds
+42 tests, 0 failures
+
+Randomized with seed 470769</code></pre>
+<h1 id="conclusions-and-future-work">5 Conclusions and Future Work</h1>
+<p>Manihome was the occasion to build a project that offer a proper solution to a real world problem. It was an importunity for us to learn to use the latest technology, having a real deployment suit and imagine what a real world can become, as explain in the following.</p>
+<h2 id="what-we-learn">5.1 What we learn</h2>
+<p>Manihome being a project from scratch, we took the opportunity to choose new technology in order to update our knowledge.</p>
+<h3 id="technicall-aspect">5.1.1 Technicall aspect</h3>
+<p>We learn to used new programming language as Elixir, a functional language that runs on the Erlang virtual machine (BEAM) and its web framework, Phoenix but also using web technology to develop android application with React Native, a framework based on React. To make secured connection between the mobile application and the API server, we learnd to used JSON Web Token, a new way to have secured connection instead of using cookie.</p>
+<h3 id="deployment">5.1.2 Deployment</h3>
+<p>During all the period of development, we made sure to have a proper deployment environment with git repository and an integration to Travis CI, a continuous integration service that help us to maintain a clean and tested code.</p>
+<h2 id="futur-work">5.2 Futur Work</h2>
+<p>Manihome is currently a working project, but in order to apply it to real world we need to go further in the communication aspect.</p>
+<h3 id="communication-and-business-model">5.2.1 Communication and business model</h3>
+<p>First of all, we need accommodation owner in Manipal so that Manihome to make sense. So we need to imporve the communication around this project, especially lending to potential user with sereval accommodations in manipal and agency. Secondly, we need to have a business model. As we want the application to be free for a regular user, we decided to add tax if an user want to propose several accommodations. This way, the application is still free for tenant user and owner with only one accommodation. This way, the application can benefit of a huge community of free account for personal used and having money from paying and professionnal used. We also think about a way to put in priority the accommodations from paying account to let each owner choose to pay or not for advantaged.</p>
+<h3 id="project-details">Project details</h3>
+</body>
+</html>
