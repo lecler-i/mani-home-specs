@@ -10,7 +10,7 @@ gulp.task('build', ['uml', 'pdf']);
 
 var src = 'src/**/*.md';
 
-gulp.task('pdf', function() {
+gulp.task('pdf', ['uml'], function() {
   gulp.src(src)
     .pipe(sort())
     .pipe(plumber({

@@ -2,8 +2,10 @@
   "name": "mani-home-doc",
   "version": "1.0.0",
   "scripts": {
-    "start": "build",
+    "start": "gulp build",
     "build": "gulp build",
+    "build:pdf": "gulp pdf",
+    "build:uml": "gulp uml",
     "watch": "gulp watch"
   },
   "dependencies": {},
