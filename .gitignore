@@ -1,7 +1,4 @@
 *~
-
-*.png
 *.pdf
-
-
 build/
+node_modules/
