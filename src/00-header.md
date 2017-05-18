@@ -1,9 +1,4 @@
 ---
-title: ManiHome
-author:
-  - Martin KINOO
-  - Thomas LECLERCQ
-date: April 11 2017
 toc: true
 header-includes:
     - \usepackage{fancyhdr}
