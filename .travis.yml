@@ -20,6 +20,7 @@ before_script:
   - export PATH=$PATH:`pwd`/node_modules/.bin/
 
 script:
+  - ls node_modules/.bin
   - npm run build
 
 deploy:
