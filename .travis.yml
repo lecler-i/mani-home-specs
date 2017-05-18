@@ -3,14 +3,19 @@ node_js:
   - "7"
 
 addons:
-  apt_packages:
-    - pandoc
-    - graphviz
-    - texlive
-    - texlive-latex-recommended
-    - texlive-xetex
-    - texlive-latex-extra
-    - lmodern
+  apt:
+    sources:
+      - sourceline: ppa:kbonne/pandoc-plantuml-filter
+
+    packages:
+      - pandoc
+      - graphviz
+      - texlive
+      - texlive-latex-recommended
+      - texlive-xetex
+      - texlive-latex-extra
+      - lmodern
+      - pandoc-plantuml-filter
 
 before_script:
   - export PATH=$PATH:`pwd`/node_modules/.bin/
