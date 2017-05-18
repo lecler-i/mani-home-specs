@@ -2,10 +2,11 @@
   "name": "mani-home-doc",
   "version": "1.0.0",
   "scripts": {
-    "start": "gulp build",
-    "build": "gulp build",
+    "start": "npm run build",
+    "build": "npm run build:pdf && npm run build:pdf:concat",
     "build:pdf": "gulp pdf",
     "build:uml": "gulp uml",
+    "build:pdf:concat": "pdftk src/first-pages.pdf build/final-report.pdf src/last-pages.pdf cat output build/full-final-report.pdf",
     "watch": "gulp watch"
   },
   "dependencies": {},
