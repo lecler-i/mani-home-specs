@@ -13,11 +13,10 @@ addons:
     - lmodern
 
 before_script:
-  - npm install -g gulp
   - export PATH=$PATH:`pwd`/node_modules/.bin/
 
 script:
-  - gulp build
+  - npm run build
 
 deploy:
   provider: pages

@@ -14,10 +14,10 @@ gulp.task('pdf', function() {
   gulp.src(src)
     .pipe(sort())
     .pipe(plumber({
-        errorHandler: function (err) {
-          console.error(err.message);
-          this.emit('end');
-        }
+      errorHandler: function (err) {
+        console.error(err.message);
+        this.emit('end');
+      }
     }))
     .pipe(concat('final-report.md'))
     .pipe(pdf({
@@ -31,7 +31,7 @@ gulp.task('pdf', function() {
 gulp.task('uml', function() {
   return gulp.src('diagrams/*.puml')
     .pipe(plantuml({
-      jarPath: 'node_modules/gulp-puml/node_modules/.bin/plantuml.jar',
+      jarPath: 'node_modules/.bin/plantuml.jar',
     }))
     .pipe(gulp.dest('build/uml/'));
 });

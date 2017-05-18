@@ -2,6 +2,7 @@
   "name": "mani-home-doc",
   "version": "1.0.0",
   "scripts": {
+    "start": "build",
     "build": "gulp build",
     "watch": "gulp watch"
   },
