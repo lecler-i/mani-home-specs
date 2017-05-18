@@ -1,7 +1,10 @@
 {
   "name": "mani-home-doc",
   "version": "1.0.0",
-  "scripts": {},
+  "scripts": {
+    "build": "gulp build",
+    "watch": "gulp watch"
+  },
   "dependencies": {},
   "devDependencies": {
     "gulp": "^3.9.1",
