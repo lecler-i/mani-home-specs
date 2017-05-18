@@ -1,0 +1,19 @@
+Actor User as u
+
+
+[Mobile app] as inter
+[Joken] as joke
+[API Server] as serv
+[Auth0] as auth
+[Data Model] as model
+[Controller] as controller
+u <-right-> inter: smartphone Android
+inter <-down-> auth: Manage authentification (Facebok ou Google)
+
+inter <-right-> joke: JWT communication
+joke -down- serv
+serv <-right-> model : update data 
+model <-down-> controller : send data
+serv <--> controller : send respo
+
+

@@ -1,0 +1,28 @@
+User --> Login: authentification
+Login --> User: authentification succeed
+User --> Navigation: touch sidebar button
+Navigation --> Sidebar: ask for showing sidebar
+Sidebar --> User: show sidebar
+User --> Sidebar: choose an action
+Sidebar --> List :ask to show list view
+List --> User: show accommodation list
+User --> List: ask to show a given accommodation
+List --> Accommodation: ask to show accommodation view
+Accommodation --> User: show accommodation view
+User --> Accommodation: ask to create a chat
+Accommodation --> Chat: ask to create a chat
+Chat --> User: show the new chat created
+Sidebar --> Map: ask to show map view. Similar to accommodation list
+Map --> User: show accommodation map
+Sidebar --> Message: ask to show chat list view
+Message --> User: show chat list view
+User --> Message: ask to show a given chatroom
+Message --> Chat: ask to show charoom view
+Chat --> User: show chatroom
+User --> Chat: send a new message
+Chat --> User: update with given message
+Sidebar --> MyListing: ask to show accommodation list view
+MyListing --> User: show accommodation list view
+Sidebar --> Logout: ask to Logout
+Logout --> Login: ask to show login view
+Login --> User: show login view
