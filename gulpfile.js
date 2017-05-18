@@ -33,7 +33,7 @@ gulp.task('uml', function() {
     .pipe(plantuml({
       jarPath: 'node_modules/.bin/plantuml.jar',
     }))
-    .pipe(gulp.dest('build/uml/'));
+    .pipe(gulp.dest('build/uml'));
 });
 
 gulp.task('watch', function () {
